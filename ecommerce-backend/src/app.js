@@ -19,5 +19,9 @@ app.use("/api/product",productroutes)
 
 app.use("/api/product",productroutes)
 
+app.use("/api/product",productroutes)
+
+app.use("/api/product",productroutes)
+
     
 module.exports = app;
