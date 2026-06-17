@@ -67,14 +67,17 @@ const userlogin=async(req,res)=>{
          }
 
     // this code is create a temp tocken for the user when user login...
-         const tocken = jwt.sign({ id: existingUser.id, email: existingUser.email},  "", { expiresIn: "1d"}
+         const temp_key = jwt.sign({ id: existingUser.id, email: existingUser.email},"ecom-temp", { expiresIn: "1d"}
         );
-
+         const main_key= jwt.sign({ id: existingUser.id, email: existingUser.email},"ecom-main-007", { expiresIn: "5d"}
+         );
     // Remove password before sending response
         const {password: dbPassword, ...userWithoutPassword}= existingUser;
-        
+        //  now merge the two keys and send responce
+        const tockens={ temp_key,main_key,...userWithoutPassword}
+
      // Login success response
-        res.status(200).json({message: "login successful",tocken,data: userWithoutPassword});
+        res.status(200).json({message: "login successful",data:tockens});
 
     } catch (error) {
         console.log(error);
