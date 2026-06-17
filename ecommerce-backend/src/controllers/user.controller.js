@@ -1,5 +1,6 @@
 const {findUserByEmail,newuser,findEmail} = require("../services/user.service");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 
 // add a new user in db
@@ -59,15 +60,21 @@ const userlogin=async(req,res)=>{
 
      // Compare entered password with hashed password in DB
         const isMatch = await bcrypt.compare(password,existingUser.password);
+
     // Password incorrect  
         if (!isMatch) {
              return res.status(400).json({ message: "Invalid password"});
-             }
+         }
+
+    // this code is create a temp tocken for the user when user login...
+         const tocken = jwt.sign({ id: existingUser.id, email: existingUser.email},  "", { expiresIn: "1d"}
+        );
 
     // Remove password before sending response
         const {password: dbPassword, ...userWithoutPassword}= existingUser;
+        
      // Login success response
-        res.status(200).json({message: "login successful",data: userWithoutPassword});
+        res.status(200).json({message: "login successful",tocken,data: userWithoutPassword});
 
     } catch (error) {
         console.log(error);
