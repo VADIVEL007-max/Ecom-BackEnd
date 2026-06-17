@@ -42,6 +42,4 @@ const updateproductdb=async(id,updatedata)=>{
 
  };
 
-module.exports = {
-  getAllProducts,addnewproductdb,updateproductdb,deleteproductdb
-};
+module.exports = { getAllProducts,addnewproductdb,updateproductdb,deleteproductdb};

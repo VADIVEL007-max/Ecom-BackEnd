@@ -1,5 +1,6 @@
 const express = require("express");
 const productroutes=require("./routes/product.routes");
+const userroutes=require("./routes/user.routes");
 const prisma = require("./config/prisma");
 // const prisma=require("./config/prisma");
 
@@ -12,16 +13,11 @@ app.get("/", (req, res) => {
     res.send("API is working...");
 });
 
-// get api to fecth all product from db
+// Product APIs
 app.use("/api/product", productroutes)
 
-app.use("/api/product",productroutes)
-
-app.use("/api/product",productroutes)
-
-app.use("/api/product",productroutes)
-
-app.use("/api/product",productroutes)
+// User APIs
+app.use("/api/user",userroutes)
 
     
 module.exports = app;
