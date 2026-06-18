@@ -8,6 +8,31 @@ const createCart = async (cartData) => {
 
 };
 
+
+const getUserCart = async (userId) => {
+  return await prisma.cart.findMany({
+    where: {
+      userId: userId,
+    },
+    include: {
+      product: true,
+    },
+  });
+};
+
+
+const updateCartQuantity = async (id, quantity) => {
+  return await prisma.cart.update({
+    where: {
+      id: id,
+    },
+    data: {
+      quantity: quantity,
+    },
+  });
+};
+
+
 module.exports = {
-  createCart
+  createCart,getUserCart,updateCartQuantity
 };
