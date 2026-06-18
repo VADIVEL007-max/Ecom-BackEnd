@@ -1,13 +1,34 @@
 const prisma = require("../config/prisma");
-
 const createCart = async (cartData) => {
 
-  return await prisma.cart.create({
-    data: cartData
+  const { userId, productId, quantity } = cartData;
+
+  const existingCart = await prisma.cart.findFirst({
+    where: {
+      userId,
+      productId,
+    },
   });
 
-};
+  if (existingCart) {
+    return await prisma.cart.update({
+      where: {
+        id: existingCart.id,
+      },
+      data: {
+        quantity: existingCart.quantity + quantity,
+      },
+    });
+  }
 
+  return await prisma.cart.create({
+    data: {
+      userId,
+      productId,
+      quantity,
+    },
+  });
+};
 
 const getUserCart = async (userId) => {
   return await prisma.cart.findMany({
