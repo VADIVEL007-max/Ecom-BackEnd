@@ -1,9 +1,13 @@
 const express = require("express");
+const prisma = require("./config/prisma");
+
 const productroutes=require("./routes/product.routes");
 const userroutes=require("./routes/user.routes");
 const categoryroutes=require("./routes/category.routes")
 const cartroutes =require("./routes/cart.routes")
-const prisma = require("./config/prisma");
+const orderRoute = require("./routes/order.routes");
+
+
 
 // const prisma=require("./config/prisma");
 
@@ -25,7 +29,13 @@ app.use("/api/user",userroutes)
 // categoryroutes APIs
 app.use("/api/category", categoryroutes)
 
+// this is cart routes
 app.use("/api/cart",cartroutes)
+
+//  this is order routes
+app.use("/api/orders", orderRoute);
+
+
 
     
 module.exports = app;
