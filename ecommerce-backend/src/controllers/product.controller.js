@@ -44,7 +44,7 @@ const addnewproduct=async(req,res)=>{
             price,
             image,
             stock,
-            category,}=req.body;
+            categoryId,}=req.body;
 
             if (
                 !title ||
@@ -52,7 +52,7 @@ const addnewproduct=async(req,res)=>{
                 !price||
                 !image ||
                 !stock||
-                !category
+                !categoryId
                 ) {
              return res.status(400).json({message: "All fields are required", });}
 

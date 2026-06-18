@@ -1,13 +1,14 @@
 const express = require("express");
 const {newCategory,getProducts, getbyCategoryid}= require("../controllers/category.controller");
 const authmiddleware = require("../middleware/auth.middleware");
+const adminMiddleware = require("../middleware/admin.middleware");
 
 const router = express.Router();
 
 
 
 
-router.post("/",newCategory)
+router.post("/",authmiddleware,adminMiddleware,newCategory)
 
 router.get("/", getProducts);
 
