@@ -1,4 +1,4 @@
-const { createCart,getUserCart,updateCartQuantity} = require("../services/cart.service");
+const { createCart,getUserCart,updateCartQuantity,deleteCartItem} = require("../services/cart.service");
 
 
 // user add product in his cart page...
@@ -60,7 +60,7 @@ const getCart = async (req, res) => {
 
   }
 };
-
+// update cart quantity 
 const updateCart = async (req, res) => {
   try {
 
@@ -69,7 +69,7 @@ const updateCart = async (req, res) => {
 
     const cart = await updateCartQuantity(id, quantity);
 
-    res.status(200).json({
+    res.status(201).json({
       message: "Cart updated successfully",
       data: cart,
     });
@@ -82,5 +82,28 @@ const updateCart = async (req, res) => {
 
   }
 };
+// delete product in cart
+const deleteCart = async (req, res) => {
+  try {
 
-module.exports = {addToCart,getCart,updateCart};
+    const { id } = req.params;
+
+    const cart = await deleteCartItem(id);
+
+    res.status(201).json({
+      message: "Cart item deleted successfully",
+      data: cart,
+    });
+
+  } catch (error) {
+
+    console.log(error);
+
+    res.status(500).json({
+      message: error.message,
+    });
+
+  }
+};
+
+module.exports = {addToCart,getCart,updateCart,deleteCart};

@@ -33,6 +33,15 @@ const updateCartQuantity = async (id, quantity) => {
 };
 
 
+const deleteCartItem = async (id) => {
+  return await prisma.cart.delete({
+    where: {
+      id: id,
+    },
+  });
+};
+
+
 module.exports = {
-  createCart,getUserCart,updateCartQuantity
+  createCart,getUserCart,updateCartQuantity,deleteCartItem
 };
