@@ -16,6 +16,18 @@ const getAllProducts = async () => {
   });
 };
 
+const getcategoryid=async(categoryId)=>{
+   return await prisma.product.findMany({
+    where: {
+      categoryId: categoryId
+    },
+    include: {
+      category: true
+    }
+  });
+
+}
+
 module.exports = {
-    createCategory,getAllProducts
+    createCategory,getAllProducts,getcategoryid
 };

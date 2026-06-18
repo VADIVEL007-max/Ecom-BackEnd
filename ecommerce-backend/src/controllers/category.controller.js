@@ -1,5 +1,6 @@
-const { createCategory ,getAllProducts} = require("../services/category.service");
+const { createCategory ,getAllProducts, getcategoryid} = require("../services/category.service");
 
+// create anew categoury in db like it handle by admin
 const newCategory = async (req, res) => {
     try {
 
@@ -30,7 +31,7 @@ const newCategory = async (req, res) => {
     }
 };
 
-
+// get all product with category id
 const getProducts = async (req, res) => {
   try {
 
@@ -48,6 +49,26 @@ const getProducts = async (req, res) => {
 
   }
 };
+
+// now it getbyCategoryid like user click mobile it only give the mibiles using the id 
+const getbyCategoryid=async(req,res)=>{
+    try {
+        const {categoryId}=req.params;
+        // console.log(req.params);
+        // console.log(categoryId);
+        
+        const categories=await getcategoryid(categoryId);
+
+        res.status(200).json({message:"get by Categoryid successfully...",data:categories})
+        
+    } catch (error) {
+
+        console.log(error);
+        
+        res.status(500).json({message: error.message });
+  
+    }
+}
 module.exports = {
-    newCategory,getProducts
+    newCategory,getProducts,getbyCategoryid,getcategoryid
 };
