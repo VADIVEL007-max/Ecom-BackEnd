@@ -1,11 +1,11 @@
 const prisma = require("../config/prisma");
 
+
 const createCategory = async (categoryData) => {
     return await prisma.category.create({
         data: categoryData
     });
 };
-
 
 
 const getAllProducts = async () => {
