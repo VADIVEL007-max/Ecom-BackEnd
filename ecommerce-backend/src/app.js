@@ -1,5 +1,6 @@
 const express = require("express");
 const prisma = require("./config/prisma");
+const cors = require("cors");
 
 const productroutes=require("./routes/product.routes");
 const userroutes=require("./routes/user.routes");
@@ -12,7 +13,7 @@ const orderRoute = require("./routes/order.routes");
 // const prisma=require("./config/prisma");
 
 const app = express();
-
+app.use(cors());
 app.use(express.json());
 
 
