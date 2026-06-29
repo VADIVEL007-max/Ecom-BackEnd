@@ -37,7 +37,7 @@ const getProducts = async (req, res) => {
 
     const products = await getAllProducts();
 
-    res.status(200).json({data: products.category
+    res.status(200).json({data: products
     });
 
   } catch (error) {
