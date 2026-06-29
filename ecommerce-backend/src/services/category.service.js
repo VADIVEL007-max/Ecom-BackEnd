@@ -16,6 +16,10 @@ const getAllProducts = async () => {
   });
 };
 
+const getAllCategories=async()=>{
+    return await prisma.category.findMany();
+}   
+
 const getcategoryid=async(categoryId)=>{
    return await prisma.product.findMany({
     where: {
@@ -29,5 +33,5 @@ const getcategoryid=async(categoryId)=>{
 }
 
 module.exports = {
-    createCategory,getAllProducts,getcategoryid
+    createCategory,getAllProducts,getcategoryid,getAllCategories
 };
