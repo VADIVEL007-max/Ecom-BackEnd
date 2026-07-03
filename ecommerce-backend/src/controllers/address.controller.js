@@ -45,6 +45,7 @@ const addAddress = async (req, res) => {
 const getAllAddresses = async (req, res) => {
   try {
     const addresses = await getAddresses(req.user.id);
+    console.log(req.user.id);
 
     res.status(200).json({
       message: "Addresses fetched successfully",

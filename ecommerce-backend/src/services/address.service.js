@@ -1,29 +1,21 @@
 const prisma = require("../config/prisma");
 
-// Find Address By Id
-const findAddressById = async (id) => {
-  return prisma.address.findUnique({
-    where: {
-      id,
-    },
-  });
-};
+
 // Create Address
 const createAddress = async (data) => {
-  return prisma.address.create({
+
+ return prisma.address.create({
     data,
   });
 };
 
 // Get User Addresses
 const getAddresses = async (userId) => {
+  console.log(userId);
   return prisma.address.findMany({
     where: {
       userId,
-    },
-    orderBy: {
-      createdAt: "desc",
-    },
+    }
   });
 };
 
@@ -40,6 +32,14 @@ const updateAddress = async (id, data) => {
 // Delete Address
 const deleteAddress = async (id) => {
   return prisma.address.delete({
+    where: {
+      id,
+    },
+  });
+};
+// Find Address By Id
+const findAddressById = async (id) => {
+  return prisma.address.findUnique({
     where: {
       id,
     },
