@@ -1,4 +1,6 @@
 const prisma = require("../config/prisma");
+console.log("Prisma Keys:", Object.keys(prisma));
+console.log("Address Model:", prisma.address);
 
 
 // Create Address
