@@ -1,5 +1,4 @@
 
-
 const prisma = require("../config/prisma");
 
 
@@ -22,6 +21,14 @@ const newuser=async(userdata)=>{
         })
 }
 
+// Find User By Id
+const findUserById = async (id) => {
+  return prisma.user.findUnique({
+    where: {
+      id,
+    },
+  });
+};
 
 
-module.exports={newuser,findUserByEmail};
+module.exports={newuser,findUserByEmail,findUserById};

@@ -1,7 +1,7 @@
 
 
 const express = require("express");
-const {newregister,userlogin }= require("../controllers/user.controller");
+const {newregister,userlogin, getProfile }= require("../controllers/user.controller");
 const authmiddleware = require("../middleware/auth.middleware");
 
 const router = express.Router();
@@ -17,7 +17,7 @@ router.get( "/test", authmiddleware,(req, res) => {
         });
     }
 );
-
+router.get("/profile",authmiddleware, getProfile);
 
 
 module.exports = router;

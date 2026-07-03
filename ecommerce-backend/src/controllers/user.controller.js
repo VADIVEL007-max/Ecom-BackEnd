@@ -1,4 +1,4 @@
-const {findUserByEmail,newuser,findEmail} = require("../services/user.service");
+const {findUserByEmail,newuser, findUserById} = require("../services/user.service");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -85,6 +85,33 @@ const userlogin=async(req,res)=>{
     }
 
 }
+// Get Logged In User Profile
+const getProfile = async (req, res) => {
+  try {
+    const user = await findUserById(req.user.id);
+
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found",
+      });
+    }
+
+    // Remove password
+    const { password, ...userWithoutPassword } = user;
+
+    res.status(200).json({
+      message: "Profile fetched successfully",
+      data: userWithoutPassword,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: "Internal Server Error",
+      error: error.message,
+    });
+  }
+};
 
 
-module.exports={userlogin,newregister};
+
+module.exports={userlogin,newregister,getProfile};
