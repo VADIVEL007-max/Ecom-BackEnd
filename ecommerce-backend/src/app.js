@@ -7,6 +7,7 @@ const userroutes=require("./routes/user.routes");
 const categoryroutes=require("./routes/category.routes")
 const cartroutes =require("./routes/cart.routes")
 const orderRoute = require("./routes/order.routes");
+const addressRoutes = require("./routes/address.routes");
 
 
 
@@ -35,6 +36,8 @@ app.use("/api/cart",cartroutes)
 
 //  this is order routes
 app.use("/api/orders", orderRoute);
+// Address APIs
+app.use("/api/address",addressRoutes);
 
 
 
