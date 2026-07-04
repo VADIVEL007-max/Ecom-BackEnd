@@ -59,15 +59,14 @@ const getUserOrders = async (userId) => {
       userId: userId,
     },
     include: {
+      address: true,
+
       orderItems: {
         include: {
           product: true,
         },
       },
-    },
-    orderBy: {
-      createdAt: "desc",
-    },
+    }
   });
 };
  
@@ -77,13 +76,16 @@ const getOrderById = async (orderId, userId) => {
       id: orderId,
       userId: userId,
     },
+  
+   include: {
+  address: true,
+
+  orderItems: {
     include: {
-      orderItems: {
-        include: {
-          product: true,
-        },
-      },
+      product: true,
     },
+  },
+  }
   });
 };
 
