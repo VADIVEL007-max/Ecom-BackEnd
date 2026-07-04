@@ -4,8 +4,9 @@ const createOrder = async (req, res) => {
   try {
 
     const userId = req.user.id;
+    const { addressId } = req.body;
 
-    const order = await placeOrder(userId);
+    const order = await placeOrder(userId,addressId);
 
     res.status(201).json({
       message: "Order placed successfully",
