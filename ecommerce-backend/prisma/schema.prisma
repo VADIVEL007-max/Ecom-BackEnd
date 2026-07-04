@@ -80,6 +80,9 @@ model Order {
   userId      String
   user        User @relation(fields:[userId], references:[id])
 
+  addressId   String
+  address     Address @relation(fields:[addressId], references:[id])
+
   totalAmount Float
   status      String @default("PENDING")
 
@@ -117,6 +120,8 @@ model Address {
 
   userId     String
   user       User @relation(fields: [userId], references: [id])
+
+   orders     Order[]
 
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
