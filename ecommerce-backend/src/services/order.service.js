@@ -1,6 +1,6 @@
 const prisma = require("../config/prisma");
 
-const placeOrder = async (userId) => {
+const placeOrder = async (userId, addressId) => {
 
   // Get Cart Items
   const cartItems = await prisma.cart.findMany({
@@ -25,6 +25,7 @@ const placeOrder = async (userId) => {
   const order = await prisma.order.create({
     data: {
       userId,
+      addressId,
       totalAmount,
       status: "PENDING",
     },
