@@ -8,6 +8,8 @@ const categoryroutes=require("./routes/category.routes")
 const cartroutes =require("./routes/cart.routes")
 const orderRoute = require("./routes/order.routes");
 const addressRoutes = require("./routes/address.routes");
+const wishlistRoutes = require("./routes/wishlist.routes");
+
 
 
 
@@ -40,6 +42,8 @@ app.use("/api/cart",cartroutes)
 app.use("/api/orders", orderRoute);
 // Address APIs
 app.use("/api/address",addressRoutes);
+
+app.use("/api/wishlist", wishlistRoutes);
 
 
 
